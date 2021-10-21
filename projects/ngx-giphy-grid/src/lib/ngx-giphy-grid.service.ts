@@ -11,11 +11,8 @@ import { map } from 'rxjs/operators';
 export class NgxGiphyGridService {
 
   giphy!: GiphyFetch;
-  config: GiphyConfig;
 
-  constructor(@Inject(GIPHY_CONFIG) config: GiphyConfig) {
-    this.config = config;
-  }
+  constructor(@Inject(GIPHY_CONFIG) private config: GiphyConfig) { }
 
   init(): void {
     if (!this.giphy) {

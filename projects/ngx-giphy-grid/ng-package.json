@@ -2,6 +2,16 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/ngx-giphy-grid",
   "lib": {
-    "entryFile": "src/public-api.ts"
-  }
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "projects/ngx-giphy-grid/src/public-api": "i1",
+      "@giphy/js-fetch-api": "jsFetchApi",
+      "ngx-intersect-observer": "i2"
+    }
+  },
+  "allowedNonPeerDependencies": [
+    "@giphy/js-fetch-api",
+    "@giphy/js-types",
+    "ngx-intersect-observer"
+  ]
 }

@@ -1,0 +1,7 @@
+<main id="scroll-parent"
+  class="ngx-giphy-grid-main">
+  <ng-content></ng-content>
+  <ngx-intersect-observer [actionOnIntersection]="loadMore"
+    [intersectionCondition]="intersectionCondition"
+    [intersectionObserverInit]="intersectionObserver"></ngx-intersect-observer>
+</main>
