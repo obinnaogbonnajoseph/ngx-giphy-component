@@ -12,14 +12,14 @@
     "declaration": false,
     "downlevelIteration": true,
     "paths": {
-      "ngx-giphy-grid": [
+      "@ngx-giphy-grid": [
         "dist/ngx-giphy-grid/ngx-giphy-grid",
         "dist/ngx-giphy-grid"
       ],
       "@giphy/*": [
         "projects/ngx-giphy-grid/node_modules/@giphy/*"
       ],
-      "ngx-intersect-observer/*": [
+      "@ngx-intersect-observer/*": [
         "projects/ngx-giphy-grid/node_modules/ngx-intersect-observer/*"
       ],
       "@angular/*": [

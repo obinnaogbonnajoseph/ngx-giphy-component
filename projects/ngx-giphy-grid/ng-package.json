@@ -4,9 +4,9 @@
   "lib": {
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
-      "projects/ngx-giphy-grid/src/public-api": "i1",
+      "projects/ngx-giphy-grid/src/public-api": "publicApi",
       "@giphy/js-fetch-api": "jsFetchApi",
-      "ngx-intersect-observer": "i2"
+      "ngx-intersect-observer": "ngxIntersectObserver"
     }
   },
   "allowedNonPeerDependencies": [
