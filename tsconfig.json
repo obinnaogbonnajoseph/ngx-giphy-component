@@ -11,6 +11,12 @@
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
+    "paths": {
+      "ngx-giphy-grid": [
+        "dist/ngx-giphy-grid/ngx-giphy-grid",
+        "dist/ngx-giphy-grid"
+      ]
+    },
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
