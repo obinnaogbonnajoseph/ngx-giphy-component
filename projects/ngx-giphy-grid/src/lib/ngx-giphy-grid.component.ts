@@ -32,6 +32,9 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
   mode: 'stickers' | 'gifs' = 'gifs';
 
   @Input()
+  className: string = '';
+
+  @Input()
   searchObj: {
     searchText: string;
     reset: boolean;
@@ -54,10 +57,14 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const modeChange = changes.mode;
     const searchChange = changes.searchObj;
+    const classNameChange = changes.className;
     if (modeChange) {
       this.searchGif('')
     } else if (searchChange) {
       this.searchGif(this.searchObj.searchText, this.searchObj.reset);
+    }
+    if (classNameChange) {
+      this.setClassName();
     }
   }
 
@@ -82,6 +89,11 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
       ...this.intersectionObserver,
       root,
     };
+  }
+
+  private setClassName(): void {
+    const rootParent = this.elementRef.nativeElement.querySelector('#scroll-parent');
+    if (rootParent) rootParent.className = this.className;
   }
 
   private getTrendingGifs(): void {
