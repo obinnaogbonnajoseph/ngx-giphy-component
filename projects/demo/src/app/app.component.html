@@ -1,19 +1,19 @@
-<div style="height: 70vh"
-  class="flex flex-col justify-start items-center p-12 bg-neutral-100 w-full">
+<div class="flex flex-col justify-start items-center bg-neutral-100 p-4 w-full h-screen">
   <!-- Search bar-->
-  <div class="bg-bluewood-50 rounded-4 px-24 py-12 w-full flex mb-24">
+  <div class="bg-blue-50 rounded-4 p-4 w-2/3 flex mb-8">
     <span class="material-icons-outlined"> search </span>
     <input (change)="searchGif($event.target)"
       placeholder="{{ mode === 'gifs' ? 'Search GIPHY...' : 'Search Stickers' }}"
       type="search"
-      class="appearance-none border-none bg-transparent flex-1 placeholder-neutral-500 text-body1-regular" />
+      class="bg-transparent flex-1 placeholder-neutral-500 text-sm" />
   </div>
   <!-- Images -->
-  <ngx-giphy-grid (gifs)="setGifs($event)"
+  <ngx-giphy-grid class="w-full flex-1 overflow-y-scroll"
+    (gifs)="setGifs($event)"
     [searchObj]="searchObj"
     (loading)="setLoading($event)"
     [mode]="mode"
-    [className]="'flex-1 overflow-y-scroll mb-24 grid gap-12 grid-cols-giphy auto-rows-giphy w-full'">
+    [className]="'flex-1 mb-8 flex flex-row flex-wrap gap-1 justify-around w-full'">
     <picture class="cursor-pointer"
       (click)="selectGif(gif, i)"
       *ngFor="let gif of gifs; index as i">
@@ -32,8 +32,8 @@
     <button (click)="changeMode('gifs')"
       class="border-none bg-transparent p-0 m-0">
       <span class="material-icons-outlined text-ti-2 {{
-          mode === 'gifs' ? 'text-green-300' : 'text-neutral-500'
-        }} mr-8 mt-4">
+        mode === 'gifs' ? 'text-green-300' : 'text-neutral-500'
+      }} mr-8 mt-4">
         gif_box
       </span>
     </button>
