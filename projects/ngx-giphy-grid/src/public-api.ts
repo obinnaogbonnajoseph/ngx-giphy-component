@@ -5,3 +5,4 @@
 export * from './lib/ngx-giphy-grid.service';
 export * from './lib/ngx-giphy-grid.component';
 export * from './lib/ngx-giphy-grid.module';
+export * from './lib/constants';

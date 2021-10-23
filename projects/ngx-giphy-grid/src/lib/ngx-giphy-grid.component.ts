@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { GiphyFetch } from '@giphy/js-fetch-api';
 import { IGif, IImages, ImageAllTypes } from '@giphy/js-types';
-import { NgxGiphyGridService } from 'projects/ngx-giphy-grid/src/public-api';
+import { NgxGiphyGridService } from './ngx-giphy-grid.service';
 import { debounceTime, take, timeout } from 'rxjs/operators';
 
 export function isMobileWidth() {

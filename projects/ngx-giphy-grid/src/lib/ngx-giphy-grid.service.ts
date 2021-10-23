@@ -1,13 +1,11 @@
 import { Inject, Injectable } from '@angular/core';
-import { GiphyConfig, GIPHY_CONFIG } from 'projects/ngx-giphy-grid/src/public-api';
 import { GiphyFetch } from '@giphy/js-fetch-api';
 import { IGif } from '@giphy/js-types';
+import { GiphyConfig, GIPHY_CONFIG } from './constants';
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class NgxGiphyGridService {
 
   giphy!: GiphyFetch;

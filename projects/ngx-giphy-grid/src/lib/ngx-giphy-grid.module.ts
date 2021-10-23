@@ -1,15 +1,8 @@
-import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { NgxGiphyGridComponent } from './ngx-giphy-grid.component';
 import { NgxIntersectObserverModule } from 'ngx-intersect-observer';
-import { NgxGiphyGridService } from 'projects/ngx-giphy-grid/src/public-api';
-
-export interface GiphyConfig {
-  token: string;
-}
-
-export const GIPHY_CONFIG = new InjectionToken<GiphyConfig>('GIPHY_CONFIG');
-
-
+import { NgxGiphyGridService } from './ngx-giphy-grid.service';
+import { GIPHY_CONFIG, GiphyConfig } from './constants';
 
 @NgModule({
   declarations: [

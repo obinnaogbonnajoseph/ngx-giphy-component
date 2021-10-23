@@ -12,7 +12,9 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxGiphyGridModule
+    NgxGiphyGridModule.forRoot({
+      token: 'Hello World'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
