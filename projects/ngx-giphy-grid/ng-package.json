@@ -1,17 +1,13 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/ngx-giphy-grid",
+  "deleteDestPath": false,
   "lib": {
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
-      "projects/ngx-giphy-grid/src/public-api": "publicApi",
-      "@giphy/js-fetch-api": "jsFetchApi",
-      "ngx-intersect-observer": "ngxIntersectObserver"
+      "projects/ngx-giphy-grid/src/public-api": "public-api",
+      "@giphy/js-fetch-api": "js-fetch-api",
+      "ngx-intersect-observer": "ngx-intersect-observer"
     }
-  },
-  "allowedNonPeerDependencies": [
-    "@giphy/js-fetch-api",
-    "@giphy/js-types",
-    "ngx-intersect-observer"
-  ]
+  }
 }

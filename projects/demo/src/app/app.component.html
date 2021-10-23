@@ -1,44 +1,44 @@
 <div style="height: 70vh"
-  class="tw-flex tw-flex-col tw-justify-start tw-items-center tw-p-12 tw-bg-neutral-100 tw-w-full">
+  class="flex flex-col justify-start items-center p-12 bg-neutral-100 w-full">
   <!-- Search bar-->
-  <div class="tw-bg-bluewood-50 tw-rounded-4 tw-px-24 tw-py-12 tw-w-full tw-flex tw-mb-24">
+  <div class="bg-bluewood-50 rounded-4 px-24 py-12 w-full flex mb-24">
     <span class="material-icons-outlined"> search </span>
-    <input (change)="searchGif($event.target.value)"
+    <input (change)="searchGif($event.target)"
       placeholder="{{ mode === 'gifs' ? 'Search GIPHY...' : 'Search Stickers' }}"
       type="search"
-      class="tw-appearance-none tw-border-none tw-bg-transparent tw-flex-1 tw-placeholder-neutral-500 tw-text-body1-regular" />
+      class="appearance-none border-none bg-transparent flex-1 placeholder-neutral-500 text-body1-regular" />
   </div>
   <!-- Images -->
   <ngx-giphy-grid (gifs)="setGifs($event)"
     [searchObj]="searchObj"
     (loading)="setLoading($event)"
     [mode]="mode"
-    [className]="'tw-flex-1 tw-overflow-y-scroll tw-mb-24 tw-grid tw-gap-12 tw-grid-cols-giphy tw-auto-rows-giphy tw-w-full'">
-    <picture class="tw-cursor-pointer"
+    [className]="'flex-1 overflow-y-scroll mb-24 grid gap-12 grid-cols-giphy auto-rows-giphy w-full'">
+    <picture class="cursor-pointer"
       (click)="selectGif(gif, i)"
-      *ngFor="let gif of gifs | async; index as i">
+      *ngFor="let gif of gifs; index as i">
       <source type="image/webp"
         [srcset]="gif.webp" />
       <img style="border-radius: 1px solid #7c7c7c"
         width="100px"
         height="100px"
         [alt]="gif.altText"
-        class="tw-rounded-8"
+        class="rounded-8"
         [src]="getUrl(gif.url)" />
     </picture>
   </ngx-giphy-grid>
   <!-- Buttons-->
-  <div class="tw-flex">
+  <div class="flex">
     <button (click)="changeMode('gifs')"
-      class="tw-border-none tw-bg-transparent tw-p-0 tw-m-0">
-      <span class="material-icons-outlined tw-text-ti-2 {{
-          mode === 'gifs' ? 'tw-text-green-300' : 'tw-text-neutral-500'
-        }} tw-mr-8 tw-mt-4">
+      class="border-none bg-transparent p-0 m-0">
+      <span class="material-icons-outlined text-ti-2 {{
+          mode === 'gifs' ? 'text-green-300' : 'text-neutral-500'
+        }} mr-8 mt-4">
         gif_box
       </span>
     </button>
     <button (click)="changeMode('stickers')"
-      class="tw-border-none tw-bg-transparent tw-p-0 tw-m-0">
+      class="border-none bg-transparent p-0 m-0">
       <svg width="24"
         height="24"
         viewBox="0 0 24 24"

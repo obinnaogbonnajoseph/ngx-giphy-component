@@ -10,10 +10,5 @@
   },
   "dependencies": {
     "tslib": "^2.3.0"
-  },
-  "devDependencies": {
-    "@giphy/js-fetch-api": "^4.1.2",
-    "@giphy/js-types": "^4.1.0",
-    "ngx-intersect-observer": "^3.0.1"
   }
 }

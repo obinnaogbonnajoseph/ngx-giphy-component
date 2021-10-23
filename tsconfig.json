@@ -17,10 +17,10 @@
         "dist/ngx-giphy-grid"
       ],
       "@giphy/*": [
-        "projects/ngx-giphy-grid/node_modules/@giphy/*"
+        "./node_modules/@giphy/*"
       ],
       "@ngx-intersect-observer/*": [
-        "projects/ngx-giphy-grid/node_modules/ngx-intersect-observer/*"
+        "./node_modules/ngx-intersect-observer/*"
       ],
       "@angular/*": [
         "./node_modules/@angular/*"
