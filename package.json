@@ -20,6 +20,7 @@
     "@angular/router": "~12.2.0",
     "@giphy/js-fetch-api": "^4.1.2",
     "@giphy/js-types": "^4.1.0",
+    "@ngx-env/builder": "^1.1.0",
     "ngx-intersect-observer": "^3.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",

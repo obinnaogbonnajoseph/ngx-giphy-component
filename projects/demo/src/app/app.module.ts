@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxGiphyGridModule } from '@ngx-giphy-grid';
+import { environment } from 'projects/demo/src/environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +14,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     NgxGiphyGridModule.forRoot({
-      token: 'Hello World'
+      token: environment.NG_GIPHY_TOKEN
     })
   ],
   providers: [],

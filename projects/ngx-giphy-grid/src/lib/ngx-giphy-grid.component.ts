@@ -59,6 +59,11 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
     const searchChange = changes.searchObj;
     const classNameChange = changes.className;
     if (modeChange) {
+      if (modeChange.isFirstChange()) {
+        this.giphyService.init();
+        this.giphyFetch = this.giphyService.giphy;
+        this.setIntersectionObserver();
+      }
       this.searchGif('')
     } else if (searchChange) {
       this.searchGif(this.searchObj.searchText, this.searchObj.reset);
@@ -68,11 +73,7 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit() {
-    this.giphyService.init();
-    this.giphyFetch = this.giphyService.giphy;
-    this.setIntersectionObserver();
-  }
+  ngOnInit() { }
 
   get defaultLength(): number {
     return isMobileWidth() ? 15 : 25;
