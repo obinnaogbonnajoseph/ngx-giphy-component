@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     NgxGiphyGridModule.forRoot({
-      token: environment.NG_GIPHY_TOKEN
+      token: environment.NG_APP_GIPHY_TOKEN
     })
   ],
   providers: [],
