@@ -19,9 +19,7 @@
       *ngFor="let gif of gifs; index as i">
       <source type="image/webp"
         [srcset]="gif.webp" />
-      <img style="border-radius: 1px solid #7c7c7c"
-        width="100px"
-        height="100px"
+      <img style="border: 1px solid #7c7c7c; width: 100px !important; height: 100px !important;"
         [alt]="gif.altText"
         class="rounded-8"
         [src]="getUrl(gif.url)" />
