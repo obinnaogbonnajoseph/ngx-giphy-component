@@ -26,7 +26,7 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
 
   giphyFetch!: GiphyFetch;
 
-  search!: string;
+  search = '';
 
   @Input()
   mode: 'stickers' | 'gifs' = 'gifs';
@@ -46,7 +46,7 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
   @Output()
   loading = new EventEmitter<boolean>(false);
 
-  finishTime = 0;
+  isLoading = false;
 
   intersectionObserver: IntersectionObserverInit = {
     threshold: 0.5,
@@ -80,8 +80,7 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
   }
 
   get intersectionCondition(): boolean {
-    const timeDiff = this.finishTime ? new Date().getMilliseconds() - this.finishTime : 100;
-    return !this.loading && Math.abs(timeDiff) >= 100;
+    return !this.isLoading;
   }
 
   private setIntersectionObserver(): void {
@@ -98,7 +97,8 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
   }
 
   private getTrendingGifs(): void {
-    this.loading.emit(true);
+    this.isLoading = true;
+    this.loading.emit(this.isLoading);
     this.giphyService
       .getTrending(this.length, this.mode)
       .pipe(debounceTime(1000), take(1), timeout(5000))
@@ -108,8 +108,8 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
           this.processImages(data);
         },
         complete: () => {
-          this.finishTime = new Date().getMilliseconds();
-          this.loading.emit(false);
+          this.isLoading = false;
+          this.loading.emit(this.isLoading);
         },
       });
   }
@@ -136,9 +136,8 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
         altText
       };
     });
-    const gifs = [...this.oldGifs];
-    gifs.push(...newImages);
-    this.gifs.emit(gifs);
+    this.oldGifs = [...this.oldGifs, ...newImages];
+    this.gifs.emit(this.oldGifs);
   }
 
   private getAltText(igif: IGif): string {
@@ -160,7 +159,8 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
   }
 
   searchGif(search: string, reset = true): void {
-    this.loading.emit(true);
+    this.isLoading = true;
+    this.loading.emit(this.isLoading);
     if (reset) {
       this.reset();
     }
@@ -179,8 +179,8 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
             this.processImages(data);
           },
           complete: () => {
-            this.finishTime = new Date().getMilliseconds();
-            this.loading.emit(false);
+            this.isLoading = false;
+            this.loading.emit(this.isLoading);
           },
         });
     } else {
