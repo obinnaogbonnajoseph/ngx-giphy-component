@@ -164,7 +164,8 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
   private reset(): void {
     this.length = this.defaultLength;
     this.offset = 0;
-    this.gifs.emit([]);
+    this.oldGifs = [];
+    this.gifs.emit(this.oldGifs);
     this.altTexts = [];
   }
 
