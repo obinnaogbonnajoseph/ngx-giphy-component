@@ -30,10 +30,9 @@ export class AppComponent {
 
   selectGif(gif: any, index: number): void { }
 
-  searchGif(val: any) {
-    console.log('*** val ***')
+  searchGif(target: any) {
     this.searchObj = {
-      searchText: val,
+      searchText: target.value,
       reset: true
     };
   }
