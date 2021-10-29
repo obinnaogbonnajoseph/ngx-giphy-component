@@ -18,23 +18,29 @@ export class NgxGiphyGridService {
     }
   }
 
-  getTrending(limit: number, type: 'stickers' | 'gifs'): Observable<IGif[]> {
+  getTrending(limit: number, type: 'stickers' | 'gifs', offset = 0): Observable<IGif[]> {
     return from(
       this.giphy.trending({
         limit,
         type,
         rating: 'pg',
+        offset
       })
     ).pipe(map(({ data }) => data));
   }
 
-  getSearchGifs(data: { search: string; limit: number; type: 'stickers' | 'gifs' }): Observable<IGif[]> {
+  getSearchGifs(data: { search: string; limit: number; type: 'stickers' | 'gifs'; offset?: number }): Observable<IGif[]> {
+    data = {
+      ...data,
+      offset: data?.offset ?? 0
+    }
     return from(
       this.giphy.search(data.search, {
         sort: 'relevant',
         rating: 'pg',
         type: data.type,
         limit: data.limit,
+        offset: data.offset
       })
     ).pipe(map(({ data }) => data));
   }

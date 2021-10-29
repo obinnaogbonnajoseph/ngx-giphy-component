@@ -24,6 +24,8 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
 
   length!: number;
 
+  offset = 0;
+
   giphyFetch!: GiphyFetch;
 
   search = '';
@@ -91,6 +93,13 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
     };
   }
 
+  private setLengthAndOffset(length: number): void {
+    const newOffset = Math.floor(length / 50);
+    this.length = (newOffset - this.offset) === 1 ? this.defaultLength :
+      length + this.defaultLength;
+    this.offset = newOffset;
+  }
+
   private setClassName(): void {
     const rootParent = this.elementRef.nativeElement.querySelector('#scroll-parent');
     if (rootParent) rootParent.className = this.className;
@@ -100,11 +109,11 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
     this.isLoading = true;
     this.loading.emit(this.isLoading);
     this.giphyService
-      .getTrending(this.length, this.mode)
+      .getTrending(this.length, this.mode, this.offset)
       .pipe(debounceTime(1000), take(1), timeout(5000))
       .subscribe({
         next: (data) => {
-          this.length = data.length + this.defaultLength;
+          this.setLengthAndOffset(data.length);
           this.processImages(data);
         },
         complete: () => {
@@ -154,6 +163,7 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
 
   private reset(): void {
     this.length = this.defaultLength;
+    this.offset = 0;
     this.gifs.emit([]);
     this.altTexts = [];
   }
@@ -175,7 +185,7 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
         .pipe(debounceTime(1000), take(1), timeout(5000))
         .subscribe({
           next: (data) => {
-            this.length = data.length + this.defaultLength;
+            this.setLengthAndOffset(data.length);
             this.processImages(data);
           },
           complete: () => {
