@@ -1,27 +1,76 @@
-# NgxGiphyGridLib
+# Angular library that returns Giphy's GIF or stickers when you search for them
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.2.
+## Description
 
-## Development server
+You can get loads of gifs or stickers from the Giphy API when you search for them using this angular component.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Demo
 
-## Code scaffolding
+@see [DEMO HERRE](https://obinnaogbonnajoseph.github.io/ngx-giphy-component/)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Getting started
 
-## Build
+```bash
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+  npm install --save ngx-giphy-grid
 
-## Running unit tests
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Setup
 
-## Running end-to-end tests
+```TypeScript
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+import { NgxGiphyGridModule } from 'ngx-giphy-grid';
+@NgModule({
+  ...
+  imports: [
+    ...
+    NgxGiphyGridModule.forRoot({
+      token: environment.NG_APP_GIPHY_TOKEN
+    })
+  ]
+})
+export class AppModule {}
 
-## Further help
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Using the component
+
+```html
+<ngx-giphy-grid
+  class="w-full flex-1 overflow-y-scroll"
+  (gifs)="setGifs($event)"
+  [searchObj]="searchObj"
+  (loading)="setLoading($event)"
+  [mode]="mode"
+  [className]="'flex-1 mb-8 flex flex-row flex-wrap gap-1 justify-around w-full'"
+>
+  <picture
+    class="cursor-pointer"
+    (click)="selectGif(gif, i)"
+    *ngFor="let gif of gifs; index as i"
+  >
+    <source type="image/webp" [srcset]="gif.webp" />
+    <img
+      style="border: 1px solid #7c7c7c; width: 100px !important; height: 100px !important;"
+      [alt]="gif.altText"
+      class="rounded-8"
+      [src]="getUrl(gif.url)"
+    />
+  </picture>
+</ngx-giphy-grid>
+```
+
+| @Input           | Type                                 | Default value    | Description                                                                                                                          |
+| ---------------- | ------------------------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| **mode**         | 'stickers' or 'gifs'                 | 'gifs'           | search results to be stickers or gifs                                                                                                |
+| **className**    | string                               | ''               | Style the parent element of list of gifs or stickers                                                                                 |
+| **searchObject** | {searchText: string; reset: boolean} | {threshold: 0.5} | contains the search string and an extra property to determine if search results should be cleared and populated by new search or not |
+
+## Issues and Pull Requests
+
+Please file issues and open pull requests [here](https://github.com/obinnaogbonnajoseph/ngx-giphy-component/issues). Thank you.
+
+## Licence
+
+MIT
