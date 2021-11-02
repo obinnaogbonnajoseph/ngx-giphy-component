@@ -67,6 +67,11 @@ export class AppModule {}
 | **className**    | string                               | ''               | Style the parent element of list of gifs or stickers                                                                                 |
 | **searchObject** | {searchText: string; reset: boolean} | {threshold: 0.5} | contains the search string and an extra property to determine if search results should be cleared and populated by new search or not |
 
+| @Output     | Type                              | Default value | Description                                       |
+| ----------- | --------------------------------- | ------------- | ------------------------------------------------- |
+| **gifs**    | Array of gif object with alt text | []            | array of gif objects with alt texts               |
+| **loading** | boolean                           | false         | shows if there is an active fetch going on or not |
+
 ## Issues and Pull Requests
 
 Please file issues and open pull requests [here](https://github.com/obinnaogbonnajoseph/ngx-giphy-component/issues). Thank you.
