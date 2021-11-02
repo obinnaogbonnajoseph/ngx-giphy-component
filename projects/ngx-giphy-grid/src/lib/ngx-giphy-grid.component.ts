@@ -1,5 +1,4 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { GiphyFetch } from '@giphy/js-fetch-api';
 import { IGif, IImages, ImageAllTypes } from '@giphy/js-types';
 import { NgxGiphyGridService } from './ngx-giphy-grid.service';
 import { debounceTime, take, timeout } from 'rxjs/operators';
@@ -15,27 +14,37 @@ export function isMobileWidth() {
 })
 export class NgxGiphyGridComponent implements OnInit, OnChanges {
 
+  /**
+   * Emits an array of fetched gifs
+   */
   @Output()
   gifs = new EventEmitter<(ImageAllTypes & { altText: string })[]>();
 
-  oldGifs: (ImageAllTypes & { altText: string })[] = [];
+  private oldGifs: (ImageAllTypes & { altText: string })[] = [];
 
-  altTexts: string[] = [];
+  private length!: number;
 
-  length!: number;
+  private offset = 0;
 
-  offset = 0;
+  private search = '';
 
-  giphyFetch!: GiphyFetch;
-
-  search = '';
-
+  /**
+   * possible values: 'stickers' | 'gifs'
+   */
   @Input()
   mode: 'stickers' | 'gifs' = 'gifs';
 
+  /**
+   * css class to style parent container for fetched gifs
+   */
   @Input()
   className: string = '';
 
+  /**
+   * search object.
+   * searchText: search string
+   * reset: reset previously fetched images or not.
+   */
   @Input()
   searchObj: {
     searchText: string;
@@ -45,11 +54,17 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
       reset: true
     }
 
+  /**
+   * emits boolean to show if fetching is ongoing or not
+   */
   @Output()
   loading = new EventEmitter<boolean>(false);
 
-  isLoading = false;
+  private isLoading = false;
 
+  /**
+   * intersect observer initial value
+   */
   intersectionObserver: IntersectionObserverInit = {
     threshold: 0.5,
   };
@@ -63,7 +78,6 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
     if (modeChange) {
       if (modeChange.isFirstChange()) {
         this.giphyService.init();
-        this.giphyFetch = this.giphyService.giphy;
         this.setIntersectionObserver();
       }
       this.searchGif('')
@@ -166,9 +180,13 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
     this.offset = 0;
     this.oldGifs = [];
     this.gifs.emit(this.oldGifs);
-    this.altTexts = [];
   }
 
+  /**
+   * searches for gifs or stickers
+   * @param search search string
+   * @param reset reset previously fetched gifs or not
+   */
   searchGif(search: string, reset = true): void {
     this.isLoading = true;
     this.loading.emit(this.isLoading);
@@ -199,6 +217,10 @@ export class NgxGiphyGridComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * loads more gifs.
+   * this function is called when intersection observer condition if fulfilled
+   */
   loadMore = () => {
     this.length = !this.length ? this.defaultLength : this.length;
     this.searchGif(this.search, false);
