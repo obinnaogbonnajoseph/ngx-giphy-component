@@ -8,5 +8,10 @@
       "@giphy/js-fetch-api": "js-fetch-api",
       "ngx-intersect-observer": "ngx-intersect-observer"
     }
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "@giphy/js-fetch-api",
+    "@giphy/js-types",
+    "ngx-intersect-observer"
+  ]
 }

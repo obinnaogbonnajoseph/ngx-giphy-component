@@ -12,16 +12,6 @@
     "declaration": false,
     "downlevelIteration": true,
     "paths": {
-      "@ngx-giphy-grid": [
-        "dist/ngx-giphy-grid/ngx-giphy-grid",
-        "dist/ngx-giphy-grid"
-      ],
-      "@giphy/*": [
-        "./node_modules/@giphy/*"
-      ],
-      "@ngx-intersect-observer/*": [
-        "./node_modules/ngx-intersect-observer/*"
-      ],
       "@angular/*": [
         "./node_modules/@angular/*"
       ]

@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgxGiphyGridModule } from '@ngx-giphy-grid';
+import { NgxGiphyGridModule } from 'ngx-giphy-grid';
 import { environment } from 'projects/demo/src/environments/environment';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
